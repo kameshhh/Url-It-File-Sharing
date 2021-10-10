@@ -1,0 +1,223 @@
+:root {
+    --mainbgcolor: rgb(0 26 53);
+    --bordercolor: #0289d1a2;
+    --container-width: 500px;
+}
+
+body,
+html {
+    font-family: system-ui;
+    font-weight: 500;
+    background: var(--mainbgcolor);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+body,
+.drop-zone,
+.upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #008dd0;
+}
+
+body {
+    flex-direction: row;
+}
+
+.upload-container {
+    background: black;
+    border-radius: 30px;
+    box-shadow: 0px 0px 100px -20px #ffffff38;
+}
+
+.drop-zone {
+    width: var(--container-width);
+    min-height: 168px;
+    /* border: 2px dashed var(--bordercolor); */
+    border: 2px dashed rgb(20 62 105);
+    margin: 30px;
+    border-radius: 15px;
+    transition: all .2s ease;
+}
+
+.icon-container {
+    position: relative;
+    width: 80px;
+    height: 100px;
+}
+
+.icon-container img {
+    width: 80px;
+    position: absolute;
+    transform-origin: bottom;
+    transition: transform 250ms ease-in-out;
+}
+
+.icon-container .center {
+    z-index: 2;
+}
+
+.icon-container.right,
+.icon-container.left {
+    filter: grayscale(.5);
+    transform: scale(.9);
+}
+
+.dragged .icon-container .right {
+    transform: rotate(10deg) translate(20px) scale(.9);
+}
+
+.dragged .icon-container .left {
+    transform: rotate(-10deg) translate(-20px)scale(.9);
+}
+
+.dragged .icon-container .center {
+    transform: translateY(-5px);
+}
+
+.dragged.drop-zone {
+    background-color: #afd0ff8e;
+    border-color: blue;
+}
+
+#fileInput {
+    display: none;
+}
+
+.browseBtn {
+    font-weight: bold;
+    /* color: rgb(134, 134, 247); */
+    color: white;
+    cursor: pointer;
+}
+
+.progress-container {
+    width: var(--container-width);
+    height: 60px;
+    border: 2px solid var(--bordercolor);
+    margin-bottom: 25px;
+    border-radius: 10px;
+    position: relative;
+    display: none;
+}
+
+.progress-container .bg-progress {
+    background: var(--mainbgcolor);
+    width: 0%;
+    height: 100%;
+    border-radius: 2%;
+    /* transform: scaleX(0); */
+    transform-origin: left;
+    transition: width .25s linear;
+    position: absolute;
+    /* z-index: -1; */
+}
+
+.progress-container .inner-container {
+    position: absolute;
+    z-index: 1;
+    margin: 10px 15px;
+}
+
+.percent-container {
+    font-size: 14px;
+    opacity: .8;
+    margin: 4px;
+}
+
+.sharing-container {
+    width: var(--container-width);
+    margin-bottom: 20px;
+    display: none;
+}
+
+p {
+    opacity: .8;
+    text-align: center;
+}
+
+.sharing-container .input-container {
+    position: relative;
+}
+
+.sharing-container .input-container input {
+    width: 100%;
+    border: 2px dashed var(--bordercolor);
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    /* background: hsla(197, 17%, 92%, 0.486)
+                      ; */
+    background: rgb(6 16 27 / 75%);
+    font-size: 20px;
+    /* background: blue; */
+    color: rgba(245, 245, 245, 0.74);
+}
+
+.input-container img {
+    position: absolute;
+    height: 24px;
+    width: 23px;
+    right: 7px;
+    top: 11px;
+    background: hsla(197, 17%, 92%, 0.486);
+}
+
+.toast {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 60px);
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #03a9f4;
+    color: #fff;
+    font-size: 18px;
+    transition: transform ease-in-out 0.2s;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.upload-vector {
+    background: url(./icons/icon7.svg) no-repeat center;
+    background-size: contain;
+    height: 35vh;
+    width: 80vh;
+    margin-left: 8%;
+    opacity: .7;
+}
+
+@media screen and (min-width:900px) and (max-width:1578px) {
+    .upload-container {
+        margin-left: 40px;
+    }
+}
+
+@media screen and (min-width:400px) and (max-width:900px) {
+     :root {
+        --container-width: 340px;
+    }
+    .upload-vector {
+        display: none;
+    }
+}
+
+@media screen and (max-width:432px) {
+     :root {
+        --container-width: 230px;
+    }
+    .upload-vector {
+        display: none;
+    }
+    .drop-zone {
+        min-height: 144px;
+        margin: 24px;
+    }
+    .progress-container {
+        margin-bottom: 10px;
+    }
+}
